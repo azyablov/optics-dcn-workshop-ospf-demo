@@ -3,15 +3,9 @@ frr defaults traditional
 hostname router31
 no ipv6 forwarding
 !
-interface lo
- ip address 10.0.0.31/32
- ip ospf area 0.0.0.3 10.0.0.31
- ip ospf passive
-exit
-!
 interface eth0431
  ip address 173.4.31.31/26
- ip ospf area 0.0.0.3 10.0.0.31
+ ip ospf area 0.0.0.3
  ip ospf network point-to-point
 exit
 !
@@ -25,6 +19,12 @@ interface eth3133
  ip address 10.0.0.31/32
  ip ospf area 0.0.0.3 10.0.0.31
  ip ospf network point-to-point
+exit
+!
+interface lo
+ ip address 10.0.0.31/32
+ ip ospf area 0.0.0.3 10.0.0.31
+ ip ospf passive
 exit
 !
 router ospf

@@ -1,0 +1,12 @@
+##### STEP1 - adding host interface to ospf
+configure terminal
+router ospf
+network 170.1.110.0/24 area 0.0.0.0
+passive-interface eth110
+exit
+
+##### STEP2 - adding static route and redistribute
+ip route 192.0.110.101/32 170.1.110.100
+router ospf
+redistribute static
+end

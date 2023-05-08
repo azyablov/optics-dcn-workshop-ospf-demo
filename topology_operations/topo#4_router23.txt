@@ -1,0 +1,18 @@
+##### STEP 1 - multiarea, nssa
+configure terminal
+interface eth130
+no shutdown
+exit
+
+#optional
+ip route 192.2.120.103/32 172.200.130.100
+router ospf
+redistribute static metric-type 1
+exit
+exit
+
+##### STEP 2 - multiarea, nssa, summarization
+configure terminal
+interface eth2223
+shutdown
+end

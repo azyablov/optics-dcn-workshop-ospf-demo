@@ -1,0 +1,9 @@
+##### STEP 1 - multiarea, nssa
+configure terminal
+interface eth0323
+no shutdown
+exit
+router ospf
+network 172.3.23.3/27 area 0.0.0.2
+area 0.0.0.2 nssa translate-always
+end

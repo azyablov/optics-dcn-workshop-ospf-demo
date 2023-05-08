@@ -1,0 +1,6 @@
+##### STEP 1 - multiarea, nssa, summarization
+configure terminal
+router ospf
+area 0.0.0.2 range 172.200.0.0/16 cost 10
+end
+

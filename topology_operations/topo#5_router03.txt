@@ -1,0 +1,11 @@
+#### STEP 1 - unnumbered interfaces
+configure terminal
+interface eth0332
+no shutdown
+exit
+router ospf
+network 173.0.0.0/8 area 0.0.0.3
+end
+
+
+

@@ -1,6 +1,6 @@
 !
 ! Zebra configuration saved from vty
-!   2023/03/12 14:15:39
+!   2023/03/16 16:24:56
 !
 hostname router03
 password zebra
@@ -11,15 +11,16 @@ interface clab-776e2f00
 !
 interface eth0
 !
-interface eth23
+interface eth0203
+ ip ospf cost 100
 !
-interface eth34
+interface eth0304
  ip ospf network point-to-point
 !
-interface eth323
+interface eth0323
  ip ospf network point-to-point
 !
-interface eth332
+interface eth0332
  ip ospf network point-to-point
 !
 interface lo
@@ -29,8 +30,6 @@ router ospf
  passive-interface lo
  network 10.0.0.3/32 area 0.0.0.0
  network 170.0.0.0/8 area 0.0.0.0
- network 172.0.0.0/8 area 0.0.0.2
- network 173.0.0.0/8 area 0.0.0.3
 !
 line vty
 !

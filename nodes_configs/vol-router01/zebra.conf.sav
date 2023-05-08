@@ -1,8 +1,8 @@
 !
 ! Zebra configuration saved from vty
-!   2023/03/12 13:47:57
+!   2023/03/12 13:53:09
 !
-hostname Router
+hostname router01
 password zebra
 enable password zebra
 !
@@ -10,10 +10,10 @@ interface clab-aeffb884
 !
 interface eth0
 !
-interface eth12
+interface eth0102
  ip address 170.1.2.1/27
 !
-interface eth14
+interface eth0104
  ip address 170.1.4.1/27
 !
 interface eth110
@@ -21,8 +21,6 @@ interface eth110
 !
 interface lo
  ip address 10.0.0.1/32
-!
-ip route 192.0.110.0/24 170.1.110.100
 !
 ip forwarding
 !

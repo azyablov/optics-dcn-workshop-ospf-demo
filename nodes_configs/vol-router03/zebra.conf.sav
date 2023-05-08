@@ -1,6 +1,6 @@
 !
 ! Zebra configuration saved from vty
-!   2023/03/12 14:15:39
+!   2023/03/16 16:24:56
 !
 hostname router03
 password zebra
@@ -10,17 +10,19 @@ interface clab-776e2f00
 !
 interface eth0
 !
-interface eth23
+interface eth0203
  ip address 170.2.3.3/27
 !
-interface eth34
+interface eth0304
  ip address 170.3.4.3/27
 !
-interface eth323
+interface eth0323
  ip address 172.3.23.3/27
+ shutdown
 !
-interface eth332
+interface eth0332
  ip address 173.3.32.3/26
+ shutdown
 !
 interface lo
  ip address 10.0.0.3/32

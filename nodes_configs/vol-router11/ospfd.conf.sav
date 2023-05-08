@@ -1,6 +1,6 @@
 !
 ! Zebra configuration saved from vty
-!   2023/02/02 17:54:29
+!   2023/03/12 13:53:10
 !
 hostname ospfd
 password zebra
@@ -9,7 +9,7 @@ password zebra
 !
 interface eth0
 !
-interface eth411
+interface eth0411
  ip ospf network point-to-point
 !
 interface eth1113

@@ -1,0 +1,18 @@
+##### STEP 1 - multiarea
+configure terminal
+interface eth0411
+no shutdown
+exit
+interface eth0412
+no shutdown
+exit
+router ospf
+network 171.0.0.0/8 area 0.0.0.1
+end
+
+#### STEP 2 area summarization
+configure terminal
+router ospf
+area 0.0.0.1 range 10.0.1.0/24
+area 0.0.0.1 range 171.0.0.0/8
+end
