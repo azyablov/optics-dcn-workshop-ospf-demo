@@ -1,0 +1,21 @@
+frr version 8.4_git
+frr defaults traditional
+hostname router01
+no ipv6 forwarding
+!
+interface lo
+ ip address 10.0.0.1/32
+ ip ospf area 0.0.0.0 10.0.0.1
+ ip ospf passive
+exit
+!
+interface ppp_0102
+ ip address 10.0.0.1 peer 10.0.0.2/32
+ ip ospf area 0.0.0.0 10.0.0.1
+ ip ospf network point-to-point
+exit
+!
+router ospf
+ ospf router-id 10.0.0.1
+exit
+!

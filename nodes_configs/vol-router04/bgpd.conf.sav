@@ -1,0 +1,9 @@
+!
+! Zebra configuration saved from vty
+!   2023/03/13 13:02:02
+!
+hostname bgpd
+password zebra
+!
+line vty
+!

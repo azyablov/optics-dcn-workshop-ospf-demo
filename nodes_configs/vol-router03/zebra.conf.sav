@@ -1,0 +1,32 @@
+!
+! Zebra configuration saved from vty
+!   2023/03/12 14:15:39
+!
+hostname router03
+password zebra
+enable password zebra
+!
+interface clab-776e2f00
+!
+interface eth0
+!
+interface eth23
+ ip address 170.2.3.3/27
+!
+interface eth34
+ ip address 170.3.4.3/27
+!
+interface eth323
+ ip address 172.3.23.3/27
+!
+interface eth332
+ ip address 173.3.32.3/26
+!
+interface lo
+ ip address 10.0.0.3/32
+!
+ip forwarding
+!
+!
+line vty
+!

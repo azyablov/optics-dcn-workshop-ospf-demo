@@ -1,0 +1,9 @@
+!
+! Zebra configuration saved from vty
+!   2023/03/12 14:15:39
+!
+hostname router03
+password zebra
+!
+line vty
+!

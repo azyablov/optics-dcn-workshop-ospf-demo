@@ -1,0 +1,27 @@
+!
+! Zebra configuration saved from vty
+!   2023/02/02 17:51:21
+!
+hostname ospfd
+password zebra
+!
+!
+!
+interface eth0
+!
+interface eth412
+ ip ospf network point-to-point
+!
+interface eth1213
+ ip ospf network point-to-point
+!
+interface lo
+!
+router ospf
+ ospf router-id 10.0.1.12
+ passive-interface lo
+ network 10.0.1.12/32 area 0.0.0.1
+ network 171.0.0.0/8 area 0.0.0.1
+!
+line vty
+!

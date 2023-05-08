@@ -1,0 +1,182 @@
+# Topology basic plus unnumbered interfaces in area3, frr image used for rotuer31 through 33
+# basic container image = arbiza/quagga, no ssh server
+name: dcn_demo
+
+mgmt:
+   network: dcn_demo
+   bridge: dcn_demo
+   ipv4_subnet: 192.168.22.0/24
+   ipv4-gw: 192.168.22.254
+
+topology:
+  kinds:
+    linux:
+      image: arbiza/quagga
+  nodes:
+#area 0
+    router01:
+      kind: linux
+      mgmt_ipv4: 192.168.22.1
+      binds:
+              - nodes_configs/vol-router01:/etc/quagga
+      exec:
+        - ip route delete 0.0.0.0/0 via 192.168.22.254
+        - ip addr del 127.0.0.1/8 dev lo
+    router02:
+      kind: linux
+      mgmt_ipv4: 192.168.22.2
+      binds:
+              - nodes_configs/vol-router02:/etc/quagga
+      exec:
+        - ip route delete 0.0.0.0/0 via 192.168.22.254
+        - ip addr del 127.0.0.1/8 dev lo
+    router03:
+      kind: linux
+      mgmt_ipv4: 192.168.22.3
+      binds:
+              - nodes_configs/vol-router03:/etc/quagga
+      exec:
+        - ip route delete 0.0.0.0/0 via 192.168.22.254
+        - ip addr del 127.0.0.1/8 dev lo
+    router04:
+      kind: linux
+      mgmt_ipv4: 192.168.22.4
+      exec:
+        - ip route delete 0.0.0.0/0 via 192.168.22.254
+        - ip addr del 127.0.0.1/8 dev lo
+      binds:
+              - nodes_configs/vol-router04:/etc/quagga
+    host01:
+      kind: linux
+      image: alpine
+      mgmt_ipv4: 192.168.22.110
+      exec:
+              - ifconfig eth110 170.1.110.100 netmask 255.255.255.0
+              - route add -net 0.0.0.0 netmask 0.0.0.0 gw 170.1.110.1
+              - route del -net 0.0.0.0 netmask 0.0.0.0 gw 192.168.22.254
+              - ip addr add 192.0.110.101/32 dev lo
+              - ip addr del 127.0.0.1/8 dev lo
+
+#area 1
+    router11:
+      kind: linux
+      mgmt_ipv4: 192.168.22.11
+      binds:
+              - nodes_configs/vol-router11:/etc/quagga
+      exec:
+        - ip route delete 0.0.0.0/0 via 192.168.22.254
+        - ip addr del 127.0.0.1/8 dev lo
+    router12:
+      kind: linux
+      mgmt_ipv4: 192.168.22.12
+      binds:
+              - nodes_configs/vol-router12:/etc/quagga
+      exec:
+        - ip route delete 0.0.0.0/0 via 192.168.22.254
+        - ip addr del 127.0.0.1/8 dev lo
+    router13:
+      kind: linux
+      mgmt_ipv4: 192.168.22.13
+      binds:
+              - nodes_configs/vol-router13:/etc/quagga
+      exec:
+        - ip route delete 0.0.0.0/0 via 192.168.22.254
+        - ip addr del 127.0.0.1/8 dev lo
+#area 2
+    router21:
+      kind: linux
+      mgmt_ipv4: 192.168.22.21
+      binds:
+              - nodes_configs/vol-router21:/etc/quagga
+      exec:
+        - ip route delete 0.0.0.0/0 via 192.168.22.254
+        - ip addr del 127.0.0.1/8 dev lo
+    router22:
+      kind: linux
+      mgmt_ipv4: 192.168.22.22
+      binds:
+              - nodes_configs/vol-router22:/etc/quagga
+      exec:
+        - ip route delete 0.0.0.0/0 via 192.168.22.254
+        - ip addr del 127.0.0.1/8 dev lo
+    router23:
+      kind: linux
+      mgmt_ipv4: 192.168.22.23
+      binds:
+              - nodes_configs/vol-router23:/etc/quagga
+      exec:
+        - ip route delete 0.0.0.0/0 via 192.168.22.254
+        - ip addr del 127.0.0.1/8 dev lo
+    host02:
+      kind: linux
+      image: alpine
+      mgmt_ipv4: 192.168.22.122
+      exec:
+              - ifconfig eth120 172.200.120.100 netmask 255.255.255.0
+              - route add -net 0.0.0.0 netmask 0.0.0.0 gw 172.200.120.22
+              - route del -net 0.0.0.0 netmask 0.0.0.0 gw 192.168.22.254
+              - ip addr add 192.2.120.102/32 dev lo
+              - ip addr del 127.0.0.1/8 dev lo
+    host03:
+      kind: linux
+      image: alpine
+      mgmt_ipv4: 192.168.22.123
+      exec:
+              - ifconfig eth130 172.200.130.100 netmask 255.255.255.0
+              - route add -net 0.0.0.0 netmask 0.0.0.0 gw 172.200.130.23
+              - route del -net 0.0.0.0 netmask 0.0.0.0 gw 192.168.22.254
+              - ip addr add 192.2.120.103/32 dev lo
+              - ip addr del 127.0.0.1/8 dev lo
+#area 3
+    router31:
+      kind: linux
+      image: frrouting/frr
+      mgmt_ipv4: 192.168.22.31
+      binds:
+              - nodes_configs/vol-router31:/etc/frr
+      exec:
+        - ip route delete 0.0.0.0/0 via 192.168.22.254
+
+    router32:
+      kind: linux
+      image: frrouting/frr
+      mgmt_ipv4: 192.168.22.32
+      binds:
+              - nodes_configs/vol-router32:/etc/frr
+      exec:
+        - ip route delete 0.0.0.0/0 via 192.168.22.254
+
+    router33:
+      kind: linux
+      image: frrouting/frr
+      mgmt_ipv4: 192.168.22.33
+      binds:
+              - nodes_configs/vol-router33:/etc/frr
+      exec:
+        - ip route delete 0.0.0.0/0 via 192.168.22.254
+
+  links:
+#area 0
+    - endpoints: ["router01:eth0102", "router02:eth0102"]
+    - endpoints: ["router01:eth0104", "router04:eth0104"]
+    - endpoints: ["router01:eth110", "host01:eth110"]
+    - endpoints: ["router02:eth0203", "router03:eth0203"]
+    - endpoints: ["router03:eth0304", "router04:eth0304"]
+#area 1
+    - endpoints: ["router04:eth0411", "router11:eth0411"]
+    - endpoints: ["router04:eth0412", "router12:eth0412"]
+    - endpoints: ["router11:eth1113", "router13:eth1113"]
+    - endpoints: ["router12:eth1213", "router13:eth1213"]
+#area 2
+    - endpoints: ["router02:eth0221", "router21:eth0221"]
+    - endpoints: ["router03:eth0323", "router23:eth0323"]
+    - endpoints: ["router21:eth2122", "router22:eth2122"]
+    - endpoints: ["router22:eth2223", "router23:eth2223"]
+    - endpoints: ["router22:eth120", "host02:eth120"]
+    - endpoints: ["router23:eth130", "host03:eth130"]
+#area 3
+    - endpoints: ["router03:eth0332", "router32:eth0332"]
+    - endpoints: ["router04:eth0431", "router31:eth0431"]
+    - endpoints: ["router31:eth3132", "router32:eth3132"]
+    - endpoints: ["router31:eth3133", "router33:eth3133"]
+    - endpoints: ["router32:eth3233", "router33:eth3233"]

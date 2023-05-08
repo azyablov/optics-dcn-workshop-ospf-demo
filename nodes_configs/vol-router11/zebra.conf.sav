@@ -1,0 +1,24 @@
+!
+! Zebra configuration saved from vty
+!   2023/02/02 17:54:29
+!
+hostname Router
+password zebra
+enable password zebra
+!
+interface eth0
+!
+interface eth411
+ ip address 171.4.11.11/27
+!
+interface eth1113
+ ip address 171.11.13.11/27
+!
+interface lo
+ ip address 10.0.1.11/32
+!
+ip forwarding
+!
+!
+line vty
+!
